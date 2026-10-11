@@ -1,2 +1,0 @@
-# LG Camera app reads vendor LGE properties
-get_prop(priv_app, vendor_lge_misc_prop)

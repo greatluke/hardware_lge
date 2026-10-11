@@ -1,3 +1,8 @@
-allow platform_app camera_configs_system_file:file { getattr open read map execute };
-allow platform_app persist_lg_camera_file:dir { read open map getattr search };
-allow platform_app persist_lg_camera_file:file { read open map getattr };
+# LG Camera is signed with the platform key and targets SDK <= 36, so it runs
+# as platform_app_36; use platform_app_all to cover every platform app domain.
+allow platform_app_all camera_configs_system_file:file { getattr open read map execute };
+allow platform_app_all persist_lg_camera_file:dir { read open map getattr search };
+allow platform_app_all persist_lg_camera_file:file { read open map getattr };
+
+# LG Camera app reads vendor LGE properties
+get_prop(platform_app_all, vendor_lge_misc_prop)
